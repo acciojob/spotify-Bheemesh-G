@@ -217,6 +217,23 @@ public class SpotifyRepository {
 
     }
 
+    public List<Song> songTitle(List<String> songTitles)
+    {
+        List<Song> l = new ArrayList<>();
+        for(int i=0;i<songTitles.size();i++)
+        {
+            for(int j=0;j<songs.size();j++)
+            {
+                if(songTitles.get(i).equals(songs.get(j).getTitle()))
+                {
+                  l.add(songs.get(j));
+                }
+            }
+        }
+
+        return l;
+    }
+
     public Playlist createPlaylistOnName(String mobile, String title, List<String> songTitles) throws Exception {
 
         Playlist p = new Playlist(title);
@@ -228,6 +245,10 @@ public class SpotifyRepository {
             {
                 throw new RuntimeException();
             }
+            List<Song> list = songTitle(songTitles);
+            playlistSongMap.put(p,list);
+            creatorPlaylistMap.put(u,p);
+            listner(p,u);
         }
         catch(Exception e)
         {
