@@ -120,9 +120,23 @@ public class SpotifyRepository {
         Album al = null;
         boolean ans = albumPresent(albumName,al);
         try{
-            if(ans==false && al==null)
+            if(ans==false )
             {
                 throw new RuntimeException();
+            }
+            else{
+                    if(albumSongMap.containsKey(al))
+                    {
+                        List<Song> list = albumSongMap.get(al);
+                        list.add(s);
+                        albumSongMap.put(al,list);
+                    }
+                    else{
+                        List<Song> list = new ArrayList<>();
+                        list.add(s);
+                        albumSongMap.put(al,list);
+                    }
+
             }
         }
         catch(Exception e)
@@ -130,20 +144,6 @@ public class SpotifyRepository {
             System.out.println("Album does not exist");
         }
 
-        if(ans==true)
-        {
-            if(albumSongMap.containsKey(al))
-            {
-                List<Song> list = albumSongMap.get(al);
-                list.add(s);
-                albumSongMap.put(al,list);
-            }
-            else{
-                List<Song> list = new ArrayList<>();
-                list.add(s);
-                albumSongMap.put(al,list);
-            }
-        }
 
         return s;
     }
