@@ -245,10 +245,10 @@ public class SpotifyRepository {
             {
                 throw new RuntimeException();
             }
-            List<Song> list = songTitle(songTitles);
-            playlistSongMap.put(p,list);
-            creatorPlaylistMap.put(u,p);
-            listner(p,u);
+        //    List<Song> list = songTitle(songTitles);
+      //      playlistSongMap.put(p,list);
+        //    creatorPlaylistMap.put(u,p);
+      //      listner(p,u);
         }
         catch(Exception e)
         {
