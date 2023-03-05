@@ -164,56 +164,21 @@ public class SpotifyRepository {
 
     public Playlist createPlaylistOnLength(String mobile, String title, int length) throws Exception {
 
-        User u = null;
-        boolean ans = userPresent(mobile,u);
-        Playlist p = new Playlist(title);
-        playlists.add(p);
-        try{
-            if(ans==false)
-            {
-                throw new RuntimeException();
-            }
-            else{
-                    //create playlist
-                    List<Song> list = new ArrayList<>();
-                    for(int i=0;i<songs.size();i++)
-                    {
-                        if(songs.get(i).getLength()==length)
-                        {
-                            list.add(songs.get(i));
-                        }
-                    }
-                    playlistSongMap.put(p,list);
-                    creatorPlaylistMap.put(u,p);
-
-                    if(playlistListenerMap.containsKey(u)){
-                        List<User> l = playlistListenerMap.get(u);
-                        l.add(u);
-                        playlistListenerMap.put(p,l);
-                    }
-                    else{
-                        List<User> l = new ArrayList<>();
-                        l.add(u);
-                        playlistListenerMap.put(p,l);
-                    }
-                    if(userPlaylistMap.containsKey(u))
-                    {
-                        List<Playlist> r = userPlaylistMap.get(u);
-                        r.add(p);
-                        userPlaylistMap.put(u,r);
-                    }
-                    else{
-                        List<Playlist> r = new ArrayList<>();
-                        r.add(p);
-                        userPlaylistMap.put(u,r);
-                    }
-            }
-        }
-        catch(Exception e)
-        {
-            System.out.println("User does not exist");
-        }
-        return p;
+       Playlist p = new Playlist(title);
+       playlists.add(p);
+       User u = null;
+       boolean ans = userPresent(mobile,u);
+       try{
+           if(ans==false)
+           {
+               throw new RuntimeException();
+           }
+       }
+       catch(Exception e)
+       {
+           System.out.println("User does not exist");
+       }
+       return p;
 
     }
 
