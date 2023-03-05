@@ -189,8 +189,6 @@ public class SpotifyRepository {
             s.add(u);
             playlistListenerMap.put(p,s);
         }
-
-        return playlistListenerMap.get(p);
     }
 
     public Playlist createPlaylistOnLength(String mobile, String title, int length) throws Exception {
