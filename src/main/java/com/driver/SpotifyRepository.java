@@ -40,7 +40,10 @@ public class SpotifyRepository {
 
     public User createUser(String name, String mobile) {
 
-        User u = new User(name,mobile);
+        User u = new User();
+        u.setName(name);
+        u.setMobile(mobile);
+
         users.add(u);
 
         return u;
@@ -49,7 +52,8 @@ public class SpotifyRepository {
 
     public Artist createArtist(String name) {
 
-        Artist a = new Artist(name);
+        Artist a = new Artist();
+        a.setName(name);
         artists.add(a);
 
         return a;
@@ -71,7 +75,8 @@ public class SpotifyRepository {
 
     public Album createAlbum(String title, String artistName) {
         //created album
-        Album al = new Album(title);
+        Album al = new Album();
+        al.setTitle(title);
         albums.add(al);
         //check for artist is present in the album or not and get the artist
         Artist art = null;
@@ -115,7 +120,9 @@ public class SpotifyRepository {
   }
     public Song createSong(String title, String albumName, int length) throws Exception{
         //create song
-        Song s = new Song(title,length);
+        Song s = new Song();
+        s.setTitle(title);
+        s.setLength(length);
         songs.add(s);
         Album al = null;
         boolean ans = albumPresent(albumName,al);
@@ -193,7 +200,8 @@ public class SpotifyRepository {
 
     public Playlist createPlaylistOnLength(String mobile, String title, int length) throws Exception {
 
-       Playlist p = new Playlist(title);
+       Playlist p = new Playlist();
+       p.setTitle(title);
        playlists.add(p);
        User u = null;
        boolean ans = userPresent(mobile,u);
@@ -235,7 +243,8 @@ public class SpotifyRepository {
 
     public Playlist createPlaylistOnName(String mobile, String title, List<String> songTitles) throws Exception {
 
-        Playlist p = new Playlist(title);
+        Playlist p = new Playlist();
+        p.setTitle(title);
         playlists.add(p);
         User u = null;
         boolean ans = userPresent(mobile,u);
