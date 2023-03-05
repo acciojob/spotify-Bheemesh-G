@@ -154,8 +154,8 @@ public class SpotifyRepository {
         {
             if(users.get(i).getMobile().equals(mobile))
             {
-                u = users.get(i);
-                return true;
+               u = users.get(i);
+               return true;
             }
         }
 
@@ -197,18 +197,17 @@ public class SpotifyRepository {
        playlists.add(p);
        User u = null;
        boolean ans = userPresent(mobile,u);
-       try{
-           if(ans==false)
-           {
-               throw new RuntimeException();
-           }
+     try{
+         if(ans==false)
+         {
+             throw new RuntimeException();
+         }
+         List<Song> l = songPresent(length);
+         playlistSongMap.put(p,l);
+         creatorPlaylistMap.put(u,p);
+         listner(p,u);
 
-           List<Song> l = songPresent(length);
-
-           playlistSongMap.put(p,l);
-           creatorPlaylistMap.put(u,p);
-           listner(p,u);
-       }
+     }
        catch(Exception e)
        {
            System.out.println("User does not exist");
@@ -245,10 +244,10 @@ public class SpotifyRepository {
             {
                 throw new RuntimeException();
             }
-        //    List<Song> list = songTitle(songTitles);
-      //      playlistSongMap.put(p,list);
-        //    creatorPlaylistMap.put(u,p);
-      //      listner(p,u);
+            List<Song> list = songTitle(songTitles);
+           playlistSongMap.put(p,list);
+            creatorPlaylistMap.put(u,p);
+            listner(p,u);
         }
         catch(Exception e)
         {
