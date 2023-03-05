@@ -173,6 +173,7 @@ public class SpotifyRepository {
            {
                throw new RuntimeException();
            }
+
        }
        catch(Exception e)
        {
@@ -192,46 +193,6 @@ public class SpotifyRepository {
             if(ans==false)
             {
                 throw new RuntimeException();
-            }
-            else{
-                //add all songs
-                List<Song> l = new ArrayList<>();
-                for(int i=0;i<songTitles.size();i++)
-                {
-                    String s = songTitles.get(i);
-                    for(int j=0;j<songs.size();j++)
-                    {
-                        if(songs.get(i).getTitle().equals(s))
-                        {
-                            l.add(songs.get(i));
-                        }
-                    }
-                }
-                playlistSongMap.put(p,l);
-                creatorPlaylistMap.put(u,p);
-
-                if(playlistListenerMap.containsKey(u)){
-                    List<User> li = playlistListenerMap.get(u);
-                    li.add(u);
-                    playlistListenerMap.put(p,li);
-                }
-                else{
-                    List<User> li = new ArrayList<>();
-                    li.add(u);
-                    playlistListenerMap.put(p,li);
-                }
-
-                if(userPlaylistMap.containsKey(u))
-                {
-                    List<Playlist> r = userPlaylistMap.get(u);
-                    r.add(p);
-                    userPlaylistMap.put(u,r);
-                }
-                else{
-                    List<Playlist> r = new ArrayList<>();
-                    r.add(p);
-                    userPlaylistMap.put(u,r);
-                }
             }
         }
         catch(Exception e)
