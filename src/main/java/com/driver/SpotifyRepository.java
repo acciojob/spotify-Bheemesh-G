@@ -162,6 +162,37 @@ public class SpotifyRepository {
         return false;
     }
 
+    public List<Song> songPresent(int length)
+    {
+        List<Song> list = new ArrayList<>();
+        for(int i=0;i<songs.size();i++)
+        {
+            if(songs.get(i).getLength()==length)
+            {
+                list.add(songs.get(i));
+            }
+        }
+
+        return list;
+    }
+
+    public void listner(Playlist p,User u)
+    {
+        if(playlistListenerMap.containsKey(u))
+        {
+            List<User> s = playlistListenerMap.get(u);
+            s.add(u);
+            playlistListenerMap.put(p,s);
+        }
+        else{
+            List<User> s = new ArrayList<>();
+            s.add(u);
+            playlistListenerMap.put(p,s);
+        }
+
+        return playlistListenerMap.get(p);
+    }
+
     public Playlist createPlaylistOnLength(String mobile, String title, int length) throws Exception {
 
        Playlist p = new Playlist(title);
@@ -174,6 +205,11 @@ public class SpotifyRepository {
                throw new RuntimeException();
            }
 
+           List<Song> l = songPresent(length);
+
+           playlistSongMap.put(p,l);
+           creatorPlaylistMap.put(u,p);
+           listner(p,u);
        }
        catch(Exception e)
        {
